@@ -22,17 +22,20 @@ if __name__ == '__main__':
             playerJoined = playerJoined[1].split(" ")
             #os.system("curl -H \"Content-Type: application/json\" -X POST -d '{ \"embeds\": [ { \"title\": \"" + playerJoined[0] + " has joined the game\"} ] }' " + url)
             os.system("curl -H \"Content-Type: application/json\" -X POST -d '{\"username\": \"Minetest\", \"content\": \"" + playerJoined[0] + " has joined the game\"}' " + url)
+            print(playerJoined[0] + " has joined the game")
         if "leaves game" in line:
             playerLeft = line.split('ACTION[Server]: ')
             playerLeft = playerLeft[1].split(" ")
             #os.system("curl -H \"Content-Type: application/json\" -X POST -d '{ \"embeds\": [ { \"title\": \"" + playerLeft[0] + " has left the game\"} ] }' " + url)
             os.system("curl -H \"Content-Type: application/json\" -X POST -d '{\"username\": \"Minetest\", \"content\": \"" + playerLeft[0] + " has left the game\"}' " + url)
+            print(playerLeft[0] + " has left the game")
         if "CHAT:" in line:
             chat = line.split("CHAT: ")
             chat = chat[1].split("> ")
             chat = chat[0] + ">: " + chat[1]
             chat = chat.rstrip()
             os.system("curl -H \"Content-Type: application/json\" -X POST -d '{\"username\": \"Minetest\", \"content\": \"" + chat + "\"}' " + url)
+            print(chat)
 
         if "Server: Shutting down" in line:
             sys.exit()
